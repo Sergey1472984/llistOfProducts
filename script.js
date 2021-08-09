@@ -25,13 +25,6 @@ class DOMelem {
     }
 }
 
-class filledElem extends DOMelem {
-    constructor(elem, parent = 'empty', className = 'empty', HTML){
-        super(elem, parent, className)
-        this.elem.innerHTML = HTML
-    }
-}
-
 class Input extends DOMelem{
     constructor(parent = 'empty', className = 'empty'){
         super('input', parent, className)
@@ -78,9 +71,8 @@ class List extends DOMelem{
         this.list = JSON.parse(localStorage.list)
         this.list = this.list.filter(el => el.includes(input.elem.value.toLowerCase()))
         this.list.forEach((el) => {
-            this.elem.appendChild((new filledElem('li', 'empty', 'products', el)).elem)  
+            this.elem.innerHTML += '<li>' + el[0].toUpperCase() + el.slice(1) + '</li>'
         })
-
     }
 }
 
